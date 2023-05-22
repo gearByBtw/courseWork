@@ -10,21 +10,28 @@ using System.Windows.Forms;
 
 namespace Pawnshop.Forms
 {
-    public partial class AddFormcs : Form
+    public partial class AddForm : Form
     {
-        public AddFormcs()
+        public AddForm()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            var MainForm = new MainForm();
+            MainForm.Show();
+        }
+
+        private void AddForm_Load(object sender, EventArgs e)
+        {
 
         }
 
-        private void AddFormcs_Load(object sender, EventArgs e)
+        private void AddForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }

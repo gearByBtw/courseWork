@@ -21,5 +21,17 @@ namespace Pawnshop.Forms
         {
             var res = MessageBox.Show("Do you want to save changes?", "", MessageBoxButtons.YesNoCancel);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var MainForm = new MainForm();
+            MainForm.Show();
+        }
+
+        private void EditForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

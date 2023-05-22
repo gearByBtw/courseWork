@@ -56,6 +56,7 @@
             this.button1.Text = "Cancel";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -231,6 +232,7 @@
             this.Controls.Add(this.button1);
             this.Name = "EditForm";
             this.Text = "EditForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,6 +1,6 @@
 ﻿namespace Pawnshop.Forms
 {
-    partial class AddFormcs
+    partial class AddForm
     {
         /// <summary>
         /// Required designer variable.
@@ -174,7 +174,7 @@
             this.button1.Text = "Submit";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // AddFormcs
+            // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,9 +191,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Cancel);
-            this.Name = "AddFormcs";
-            this.Text = "AddFormcs";
-            this.Load += new System.EventHandler(this.AddFormcs_Load);
+            this.Name = "AddForm";
+            this.Text = "AddForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddForm_FormClosing_1);
+            this.Load += new System.EventHandler(this.AddForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

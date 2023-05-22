@@ -14,12 +14,8 @@ namespace Pawnshop.Models
 
         public PawnshopList()
         {
-
-        }
-
-        public void TestData(int n)
-        {
-
+            IsDirty = false;
+            Lots = new List<Lot>();
         }
     }
 }

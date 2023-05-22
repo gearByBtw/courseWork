@@ -192,6 +192,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Cancel);
             this.Name = "AddForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddForm_FormClosing_1);
             this.Load += new System.EventHandler(this.AddForm_Load);

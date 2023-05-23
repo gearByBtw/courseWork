@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.Cancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.item_box = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.price_box = new System.Windows.Forms.TextBox();
+            this.client_box = new System.Windows.Forms.TextBox();
+            this.given_price_box = new System.Windows.Forms.TextBox();
+            this.period_box = new System.Windows.Forms.TextBox();
+            this.submit_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Cancel
@@ -54,14 +54,15 @@
             this.Cancel.UseVisualStyleBackColor = false;
             this.Cancel.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // item_box
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(335, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "item";
-            this.textBox1.Size = new System.Drawing.Size(341, 41);
-            this.textBox1.TabIndex = 1;
+            this.item_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.item_box.Location = new System.Drawing.Point(335, 28);
+            this.item_box.Name = "item_box";
+            this.item_box.PlaceholderText = "item";
+            this.item_box.Size = new System.Drawing.Size(341, 41);
+            this.item_box.TabIndex = 1;
+            this.item_box.TextChanged += new System.EventHandler(this.item_box_TextChanged);
             // 
             // label1
             // 
@@ -128,68 +129,69 @@
             this.label5.Text = "Expiration period\r\n(days):";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // price_box
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(335, 202);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "9.99";
-            this.textBox2.Size = new System.Drawing.Size(341, 41);
-            this.textBox2.TabIndex = 7;
+            this.price_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.price_box.Location = new System.Drawing.Point(335, 202);
+            this.price_box.Name = "price_box";
+            this.price_box.PlaceholderText = "9.99";
+            this.price_box.Size = new System.Drawing.Size(341, 41);
+            this.price_box.TabIndex = 7;
             // 
-            // textBox3
+            // client_box
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(335, 112);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PlaceholderText = "Robert Brown";
-            this.textBox3.Size = new System.Drawing.Size(341, 41);
-            this.textBox3.TabIndex = 8;
+            this.client_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.client_box.Location = new System.Drawing.Point(335, 112);
+            this.client_box.Name = "client_box";
+            this.client_box.PlaceholderText = "Robert Brown";
+            this.client_box.Size = new System.Drawing.Size(341, 41);
+            this.client_box.TabIndex = 8;
             // 
-            // textBox4
+            // given_price_box
             // 
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox4.Location = new System.Drawing.Point(335, 292);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PlaceholderText = "9.99";
-            this.textBox4.Size = new System.Drawing.Size(341, 41);
-            this.textBox4.TabIndex = 9;
+            this.given_price_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.given_price_box.Location = new System.Drawing.Point(335, 292);
+            this.given_price_box.Name = "given_price_box";
+            this.given_price_box.PlaceholderText = "9.99";
+            this.given_price_box.Size = new System.Drawing.Size(341, 41);
+            this.given_price_box.TabIndex = 9;
             // 
-            // textBox5
+            // period_box
             // 
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox5.Location = new System.Drawing.Point(335, 387);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.PlaceholderText = "3";
-            this.textBox5.Size = new System.Drawing.Size(341, 41);
-            this.textBox5.TabIndex = 10;
+            this.period_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.period_box.Location = new System.Drawing.Point(335, 387);
+            this.period_box.Name = "period_box";
+            this.period_box.PlaceholderText = "3";
+            this.period_box.Size = new System.Drawing.Size(341, 41);
+            this.period_box.TabIndex = 10;
             // 
-            // button1
+            // submit_button
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(411, 465);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(175, 60);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Submit";
-            this.button1.UseVisualStyleBackColor = true;
+            this.submit_button.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.submit_button.Location = new System.Drawing.Point(411, 465);
+            this.submit_button.Name = "submit_button";
+            this.submit_button.Size = new System.Drawing.Size(175, 60);
+            this.submit_button.TabIndex = 11;
+            this.submit_button.Text = "Submit";
+            this.submit_button.UseVisualStyleBackColor = true;
+            this.submit_button.Click += new System.EventHandler(this.submit_button_Click);
             // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.submit_button);
+            this.Controls.Add(this.period_box);
+            this.Controls.Add(this.given_price_box);
+            this.Controls.Add(this.client_box);
+            this.Controls.Add(this.price_box);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.item_box);
             this.Controls.Add(this.Cancel);
             this.Name = "AddForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -204,16 +206,16 @@
         #endregion
 
         private Button Cancel;
-        private TextBox textBox1;
+        private TextBox item_box;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private Button button1;
+        private TextBox price_box;
+        private TextBox client_box;
+        private TextBox given_price_box;
+        private TextBox period_box;
+        private Button submit_button;
     }
 }

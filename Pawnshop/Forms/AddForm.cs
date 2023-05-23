@@ -33,5 +33,15 @@ namespace Pawnshop.Forms
         {
             Application.Exit();
         }
+
+        private void submit_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void item_box_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace Pawnshop.Models
 
         public override string ToString()
         {
-            return $"{id}   {item}   {client}   {price}   {price_given}   {date}   {date_expire}";
+            return $"{id}   {item}   {client}   {price}   {price_given}   {date.ToShortDateString()}   {date_expire.ToShortDateString()}";
         }
     }
 }

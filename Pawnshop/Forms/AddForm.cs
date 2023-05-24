@@ -28,14 +28,11 @@ namespace Pawnshop.Forms
             MainForm.Show();
         }
 
-        private void AddForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            this.Hide();
+            var MainForm = new MainForm();
+            MainForm.Show();
         }
 
         private void submit_button_Click(object sender, EventArgs e)
@@ -44,35 +41,35 @@ namespace Pawnshop.Forms
                 string item = item_box.Text;
                 if (string.IsNullOrEmpty(item))
                 {
-                    MessageBox.Show("Введіть коректне значення для предмета.");
+                    MessageBox.Show("Enter the valid value for the item.");
                     return;
                 }
 
                 string client = client_box.Text;
                 if (string.IsNullOrEmpty(client))
                 {
-                    MessageBox.Show("Введіть коректне значення для кліента.");
+                    MessageBox.Show("Enter the valid value for the client.");
                     return;
                 }
 
 
                 if (!double.TryParse(price_box.Text, out double price))
                 {
-                    MessageBox.Show("Введіть коректне значення для ціни.");
+                    MessageBox.Show("Enter the valid value for the price.");
                     return;
                 }
 
 
                 if (!double.TryParse(given_price_box.Text, out double price_given))
                 {
-                    MessageBox.Show("Введіть коректне значення для виданої суми.");
+                    MessageBox.Show("Enter the valid value for the given price.");
                     return;
                 }
 
 
                 if (!int.TryParse(period_box.Text, out int expiration_period))
                 {
-                    MessageBox.Show("Введіть коректне значення для терміну зберігання.");
+                    MessageBox.Show("Enter the valid value for the expiration period.");
                     return;
                 }
 

@@ -8,6 +8,7 @@ namespace Pawnshop.Models
 {
     public class PawnshopList
     {
+        public int IdCounter { get; set; }
         public bool IsDirty { set; get; }
 
         public List<Lot> Lots { set; get; }
@@ -16,6 +17,7 @@ namespace Pawnshop.Models
         {
             IsDirty = false;
             Lots = new List<Lot>();
+            IdCounter = 1;
         }
     }
 }

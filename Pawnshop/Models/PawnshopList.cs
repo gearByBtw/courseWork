@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pawnshop.Models
 {
-    internal class PawnshopList
+    public class PawnshopList
     {
         public bool IsDirty { set; get; }
 

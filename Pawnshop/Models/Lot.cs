@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pawnshop.Models
 {
-    internal class Lot
+    public class Lot
     {
         public int id { get; set; }
 

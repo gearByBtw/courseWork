@@ -2,6 +2,8 @@ using Pawnshop.Models;
 using Pawnshop.Forms;
 using Pawnshop.Data;
 using static System.Reflection.Metadata.BlobBuilder;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 
 namespace Pawnshop
@@ -15,6 +17,14 @@ namespace Pawnshop
             pawnshop = new PawnshopList();
             mainFormBindingSource.DataSource = pawnshop.Lots;
             DataAccess.Load(pawnshop);
+            mainFormBindingSource.ResetBindings(true);
+
+        }
+        public void AddNewLot(string item, string client, double price, double price_given, int expiration_period)
+        {
+            int id = pawnshop.Lots.Count + 1;
+            Lot newLot = new Lot(id, item, client, price, price_given, DateTime.Now, DateTime.Now.AddDays(expiration_period));
+            pawnshop.Lots.Add(newLot);
             mainFormBindingSource.ResetBindings(true);
         }
 

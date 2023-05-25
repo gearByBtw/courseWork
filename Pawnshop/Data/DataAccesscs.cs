@@ -11,6 +11,7 @@ namespace Pawnshop.Data
     internal static class DataAccess
     {
         const string DATA_PATH = "Data\\Pawnshop.json";
+        const string DATA_PATH2 = "Data\\State.json";
 
         public static void Save(PawnshopList pawnshop)
         {
@@ -27,6 +28,17 @@ namespace Pawnshop.Data
             pawnshop.Lots.AddRange(newLots);
             pawnshop.IsDirty = false;
         }
-
+        
+        public static bool stateLoad()
+        {
+            string jsonString = File.ReadAllText(DATA_PATH2);
+            var newState = JsonSerializer.Deserialize<bool>(jsonString);
+            return newState;
+        }
+        public static void stateSave(bool IsLoaded)
+        {
+            string jsonString = JsonSerializer.Serialize(IsLoaded);
+            File.WriteAllText(DATA_PATH2, jsonString);
+        }
     }
 }

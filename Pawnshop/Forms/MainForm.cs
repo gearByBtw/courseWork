@@ -1,10 +1,12 @@
 using Pawnshop.Models;
 using Pawnshop.Forms;
 using Pawnshop.Data;
+using System.Globalization;
 using static System.Reflection.Metadata.BlobBuilder;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 
 namespace Pawnshop
@@ -12,6 +14,8 @@ namespace Pawnshop
     public partial class MainForm : Form
     {
         PawnshopList pawnshop;
+
+        public static MainForm link;
 
         public static PawnshopList pawnshopMain;
 
@@ -26,6 +30,7 @@ namespace Pawnshop
         public MainForm()
         {
             InitializeComponent();
+            link = this;
             this.FormClosing += MainForm_FormClosing;
             pawnshop = GetMain();
             mainFormBindingSource.DataSource = pawnshop.Lots;
@@ -61,6 +66,25 @@ namespace Pawnshop
                 pawnshop.IsDirty = true;
                 mainFormBindingSource.ResetBindings(true);
             }
+        }
+        public List<Lot> searchFor(string searchValue)
+        {
+            var searchResults = new List<Lot>();
+
+            int searchInt;
+            bool isInt = int.TryParse(searchValue, out searchInt);
+            double searchDouble;
+            bool isDouble = double.TryParse(searchValue, out searchDouble);
+            DateTime searchDate;
+            bool isDate = DateTime.TryParseExact(searchValue, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out searchDate);
+            searchResults = pawnshop.Lots.Where(obj =>
+            (isInt && obj.id == searchInt) ||
+            obj.item == searchValue ||
+            obj.client == searchValue ||
+            (isDouble && (obj.price == searchDouble || obj.price_given == searchDouble)) ||
+            (isDate && (obj.date.ToShortDateString() == searchValue || obj.date_expire.ToShortDateString() == searchValue))
+            ).Distinct().ToList();
+            return searchResults;
         }
 
         private void testDataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,16 +178,17 @@ namespace Pawnshop
 
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            delete();
+            Lot selectedItem = (Lot)ItemList.SelectedItem;
+            delete(selectedItem);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            delete();
-        }
-        public void delete()
-        {
             Lot selectedItem = (Lot)ItemList.SelectedItem;
+            delete(selectedItem);
+        }
+        public void delete(Lot selectedItem)
+        {
             if (selectedItem != null)
             {
                 string message = "Are you sure you want to delete this element?";

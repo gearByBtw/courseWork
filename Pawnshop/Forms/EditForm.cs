@@ -19,9 +19,14 @@ namespace Pawnshop.Forms
 {
     public partial class EditForm : Form
     {
+        public int from;
         public EditForm()
         {
             InitializeComponent();
+            if (from != 1)
+            {
+                from = 0;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -79,10 +84,18 @@ namespace Pawnshop.Forms
 
             if (result == DialogResult.Yes)
             {
-                this.Hide();
                 var MainForm = new MainForm();
-                MainForm.Show();
+                var SearchForm = new SearchForm();
                 MainForm.EditLot(id, item, client, price, price_given, date, expiration_period);
+                this.Hide();
+                if (from == 1)
+                {
+                    SearchForm.Show();
+                }else if (from == 0)
+                {
+                MainForm.Show();
+                }
+                
             }
 
            
@@ -92,14 +105,30 @@ namespace Pawnshop.Forms
         {
             this.Hide();
             var MainForm = new MainForm();
-            MainForm.Show();
+            var SearchForm = new SearchForm();
+            if (from == 1)
+            {
+                SearchForm.Show();
+            }
+            else if (from == 0)
+            {
+                MainForm.Show();
+            }
         }
 
         private void EditForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
             var MainForm = new MainForm();
-            MainForm.Show();
+            var SearchForm = new SearchForm();
+            if (from == 1)
+            {
+                SearchForm.Show();
+            }
+            else if (from == 0)
+            {
+                MainForm.Show();
+            }
         }
 
         public void id(Lot changed)

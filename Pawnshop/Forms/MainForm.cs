@@ -4,6 +4,7 @@ using Pawnshop.Data;
 using static System.Reflection.Metadata.BlobBuilder;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 
 namespace Pawnshop
@@ -25,8 +26,16 @@ namespace Pawnshop
         public MainForm()
         {
             InitializeComponent();
+            this.FormClosing += MainForm_FormClosing;
             pawnshop = GetMain();
             mainFormBindingSource.DataSource = pawnshop.Lots;
+            bool state = DataAccess.stateLoad();
+            if(state)
+            {
+                DataAccess.Load(pawnshop);
+                mainFormBindingSource.ResetBindings(true);
+                DataAccess.stateSave(false);
+            }
         }
         public void AddNewLot(string item, string client, double price, double price_given, int expiration_period)
         {
@@ -60,7 +69,8 @@ namespace Pawnshop
             
                 for (int i = 1; i < n+1; i++)
                 {
-                    var newLot = new Lot(pawnshop.IdCounter++, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(i), DateTime.Now.AddDays(i+3));
+                    var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(i), DateTime.Now.AddDays(i+3));
+                    pawnshop.IdCounter++;
                     pawnshop.Lots.Add(newLot);
                 }
             mainFormBindingSource.ResetBindings(true);
@@ -105,6 +115,7 @@ namespace Pawnshop
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pawnshop.Lots.Clear();
+            pawnshop.IdCounter = 1;
             mainFormBindingSource.ResetBindings(true);
         }
 
@@ -190,10 +201,12 @@ namespace Pawnshop
                 {
                     DataAccess.Load(pawnshop);
                 }
+                DataAccess.stateSave(true);
                 Environment.Exit(0);
             }
             else
             {
+                DataAccess.stateSave(true);
                 Environment.Exit(0);
             }
         }
@@ -204,5 +217,7 @@ namespace Pawnshop
             var SearchForm = new SearchForm();
             SearchForm.Show();
         }
+
+
     }
 }

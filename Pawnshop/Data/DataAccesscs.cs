@@ -15,7 +15,7 @@ namespace Pawnshop.Data
 
         public static void Save(PawnshopList pawnshop)
         {
-            string jsonString = JsonSerializer.Serialize(pawnshop.Lots);
+            string jsonString = JsonSerializer.Serialize(pawnshop);
             File.WriteAllText(DATA_PATH, jsonString);
             pawnshop.IsDirty = false;
         }
@@ -23,12 +23,13 @@ namespace Pawnshop.Data
         public static void Load(PawnshopList pawnshop)
         {
             string jsonString = File.ReadAllText(DATA_PATH);
-            var newLots = JsonSerializer.Deserialize<List<Lot>>(jsonString);
+            var newPawnshop = JsonSerializer.Deserialize<PawnshopList>(jsonString);
             pawnshop.Lots.Clear();
-            pawnshop.Lots.AddRange(newLots);
+            pawnshop.Lots.AddRange(newPawnshop.Lots);
+            pawnshop.IdCounter = newPawnshop.IdCounter;
             pawnshop.IsDirty = false;
         }
-        
+
         public static bool stateLoad()
         {
             string jsonString = File.ReadAllText(DATA_PATH2);

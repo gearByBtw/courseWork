@@ -60,6 +60,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(12, 390);
             this.label5.MaximumSize = new System.Drawing.Size(300, 100);
@@ -73,6 +74,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(12, 260);
             this.label4.MaximumSize = new System.Drawing.Size(300, 100);
@@ -86,6 +88,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(12, 195);
             this.label3.MaximumSize = new System.Drawing.Size(300, 100);
@@ -99,6 +102,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(12, 130);
             this.label2.MaximumSize = new System.Drawing.Size(300, 100);
@@ -112,6 +116,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 65);
             this.label1.MaximumSize = new System.Drawing.Size(300, 100);
@@ -125,6 +130,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(12, 325);
             this.label7.MaximumSize = new System.Drawing.Size(300, 100);
@@ -138,6 +144,7 @@
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.Location = new System.Drawing.Point(472, 476);
             this.button2.Name = "button2";
@@ -149,6 +156,7 @@
             // 
             // client_box
             // 
+            this.client_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.client_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.client_box.Location = new System.Drawing.Point(341, 145);
             this.client_box.Name = "client_box";
@@ -157,6 +165,7 @@
             // 
             // item_box
             // 
+            this.item_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.item_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.item_box.Location = new System.Drawing.Point(341, 80);
             this.item_box.Name = "item_box";
@@ -165,6 +174,7 @@
             // 
             // price_box
             // 
+            this.price_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.price_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.price_box.Location = new System.Drawing.Point(341, 210);
             this.price_box.Name = "price_box";
@@ -173,6 +183,7 @@
             // 
             // given_price_box
             // 
+            this.given_price_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.given_price_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.given_price_box.Location = new System.Drawing.Point(341, 275);
             this.given_price_box.Name = "given_price_box";
@@ -181,6 +192,7 @@
             // 
             // recieving_box
             // 
+            this.recieving_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.recieving_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.recieving_box.Location = new System.Drawing.Point(341, 340);
             this.recieving_box.Name = "recieving_box";
@@ -189,6 +201,7 @@
             // 
             // period_box
             // 
+            this.period_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.period_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.period_box.Location = new System.Drawing.Point(341, 405);
             this.period_box.Name = "period_box";
@@ -197,6 +210,7 @@
             // 
             // id_box
             // 
+            this.id_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.id_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.id_box.Location = new System.Drawing.Point(341, 24);
             this.id_box.Name = "id_box";
@@ -206,6 +220,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.Location = new System.Drawing.Point(12, 9);
             this.label6.MaximumSize = new System.Drawing.Size(300, 100);
@@ -238,6 +253,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "EditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditForm";

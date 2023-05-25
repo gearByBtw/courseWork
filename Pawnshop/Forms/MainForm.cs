@@ -197,5 +197,12 @@ namespace Pawnshop
                 Environment.Exit(0);
             }
         }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var SearchForm = new SearchForm();
+            SearchForm.Show();
+        }
     }
 }

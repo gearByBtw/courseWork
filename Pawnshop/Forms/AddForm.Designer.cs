@@ -143,7 +143,7 @@
             this.price_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.price_box.Location = new System.Drawing.Point(352, 214);
             this.price_box.Name = "price_box";
-            this.price_box.PlaceholderText = "9.99";
+            this.price_box.PlaceholderText = "9,99";
             this.price_box.Size = new System.Drawing.Size(340, 41);
             this.price_box.TabIndex = 7;
             // 
@@ -153,7 +153,7 @@
             this.client_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.client_box.Location = new System.Drawing.Point(352, 124);
             this.client_box.Name = "client_box";
-            this.client_box.PlaceholderText = "Robert Brown";
+            this.client_box.PlaceholderText = "name";
             this.client_box.Size = new System.Drawing.Size(340, 41);
             this.client_box.TabIndex = 8;
             // 
@@ -163,7 +163,7 @@
             this.given_price_box.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.given_price_box.Location = new System.Drawing.Point(352, 304);
             this.given_price_box.Name = "given_price_box";
-            this.given_price_box.PlaceholderText = "9.99";
+            this.given_price_box.PlaceholderText = "9,99";
             this.given_price_box.Size = new System.Drawing.Size(340, 41);
             this.given_price_box.TabIndex = 9;
             // 

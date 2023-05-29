@@ -33,28 +33,30 @@ namespace Pawnshop.Forms
         {
             
                 string item = item_box.Text;
-                if (string.IsNullOrEmpty(item))
+                string itemNoSpaces = item.Replace(" ", string.Empty);
+            if ((string.IsNullOrEmpty(item)) || (string.IsNullOrEmpty(itemNoSpaces)))
                 {
                     MessageBox.Show("Invalid item name.");
                     return;
                 }
 
                 string client = client_box.Text;
-                if (string.IsNullOrEmpty(client))
+                string clientNoSpaces = client.Replace(" ", string.Empty);
+            if ((string.IsNullOrEmpty(client)) || (string.IsNullOrEmpty(clientNoSpaces)))
                 {
                     MessageBox.Show("Invalid client name.");
                     return;
                 }
 
 
-                if (!double.TryParse(price_box.Text, out double price))
+                if ((!double.TryParse(price_box.Text, out double price)) || (price < 0))
                 {
                     MessageBox.Show("Invalid price.");
                     return;
                 }
 
 
-                if (!double.TryParse(given_price_box.Text, out double price_given))
+                if ((!double.TryParse(given_price_box.Text, out double price_given)) || (price_given < 0))
                 {
                     MessageBox.Show("Invalid given price.");
                     return;
@@ -71,7 +73,7 @@ namespace Pawnshop.Forms
             }
 
 
-            if (!int.TryParse(period_box.Text, out int expiration_period))
+            if ((!int.TryParse(period_box.Text, out int expiration_period)) || (expiration_period < 0))
                 {
                     MessageBox.Show("Invalid expiration period.");
                     return;

@@ -21,18 +21,9 @@ namespace Pawnshop.Forms
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var MainForm = new MainForm();
-            MainForm.Show();
-        }
-
         private void AddForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            var MainForm = new MainForm();
-            MainForm.Show();
         }
 
         private void submit_button_Click(object sender, EventArgs e)
@@ -79,16 +70,14 @@ namespace Pawnshop.Forms
 
 
                 this.Hide();
-                var MainForm = new MainForm();
-                MainForm.Show();
-                MainForm.AddNewLot(item, client, price, price_given, expiration_period);
+                MainForm.link.AddNewLot(item, client, price, price_given, expiration_period);
             }
 
         }
 
-        private void item_box_TextChanged(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
     }
 }

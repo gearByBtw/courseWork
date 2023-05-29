@@ -117,9 +117,8 @@ namespace Pawnshop
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
             var AddForm = new AddForm();
-            AddForm.Show();
+            AddForm.ShowDialog();
         }
 
         private void ediToolStripMenuItem_Click(object sender, EventArgs e)
@@ -127,10 +126,9 @@ namespace Pawnshop
             Lot selectedItem = (Lot)ItemList.SelectedItem;
             if (selectedItem != null)
             {
-                this.Hide();
                 var EditForm = new EditForm();
-                EditForm.Show();
                 EditForm.id(selectedItem);
+                EditForm.ShowDialog(); 
             }
             else
             {
@@ -178,11 +176,10 @@ namespace Pawnshop
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
             var EditForm = new EditForm();
-            EditForm.Show();
             Lot selectedItem = (Lot)ItemList.SelectedItem;
             EditForm.id(selectedItem);
+            EditForm.ShowDialog();
         }
 
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)

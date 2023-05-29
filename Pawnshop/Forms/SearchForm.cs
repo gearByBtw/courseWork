@@ -47,11 +47,12 @@ namespace Pawnshop.Forms
         {
             Lot selectedItem = (Lot)search_output.SelectedItem;
             lastText = search_input.Text;
-            this.Hide();
             var EditForm = new EditForm();
             EditForm.from = 1;
-            EditForm.Show();
             EditForm.id(selectedItem);
+            EditForm.ShowDialog();
+            var str = search_input.Text;
+            search(str);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)

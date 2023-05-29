@@ -35,8 +35,6 @@ namespace Pawnshop.Models
             this.date = date;
             this.date_expire = date_expire;
         }
-        
-        public Lot() { }
 
         public override string ToString()
         {

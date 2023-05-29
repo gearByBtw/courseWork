@@ -86,51 +86,19 @@ namespace Pawnshop.Forms
 
             if (result == DialogResult.Yes)
             {
-                var MainForm = new MainForm();
-                var SearchForm = new SearchForm();
-                MainForm.EditLot(id, item, client, price, price_given, date, expiration_period);
+                MainForm.link.EditLot(id, item, client, price, price_given, date, expiration_period);
                 this.Hide();
-                if (from == 1)
-                {
-                    SearchForm.Show();
-                }else if (from == 0)
-                {
-                MainForm.Show();
-                }
-                
             }
-
-           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var MainForm = new MainForm();
-            var SearchForm = new SearchForm();
-            if (from == 1)
-            {
-                SearchForm.Show();
-            }
-            else if (from == 0)
-            {
-                MainForm.Show();
-            }
         }
 
         private void EditForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            var MainForm = new MainForm();
-            var SearchForm = new SearchForm();
-            if (from == 1)
-            {
-                SearchForm.Show();
-            }
-            else if (from == 0)
-            {
-                MainForm.Show();
-            }
         }
 
         public void id(Lot changed)

@@ -93,9 +93,18 @@ namespace Pawnshop
             
                 for (int i = 1; i < n+1; i++)
                 {
-                    var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(i), DateTime.Now.AddDays(i+3));
+                if (i % 2 == 0)
+                {
+                    var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(i), DateTime.Now.AddDays(i + 3));
                     pawnshop.IdCounter++;
                     pawnshop.Lots.Add(newLot);
+                }
+                else
+                {
+                    var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(-365+i), DateTime.Now.AddDays(-365 + i + 3));
+                    pawnshop.IdCounter++;
+                    pawnshop.Lots.Add(newLot);
+                }
                 }
             mainFormBindingSource.ResetBindings(true);
             mainFormBindingSource.DataSource = pawnshop.Lots;
@@ -206,7 +215,7 @@ namespace Pawnshop
             {
                 string message = "Catched: System.NullReferenceException. You are trying to delete nothing.";
                 string caption = "Error";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Question);
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
             }
            
         }
@@ -243,6 +252,57 @@ namespace Pawnshop
             SearchForm.Show();
         }
 
+        private void sellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lot selectedItem = (Lot)ItemList.SelectedItem;
+            if(selectedItem.date_expire < DateTime.Now)
+            {
+                sell(selectedItem);
+            }
+            else
+            {
+                string message = "You can not sell this item, expiration date has not yet passed.";
+                string caption = "Selling error";
+                var res = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+            }
+        }
 
+        public void sell(Lot selectedItem)
+        {
+            if (selectedItem != null)
+            {
+                string message = "Are you sure you want to sell this element?";
+                string caption = "Selling confirmation";
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    pawnshop.Lots.Remove(selectedItem);
+                    pawnshop.IsDirty = true;
+                    mainFormBindingSource.ResetBindings(true);
+                }
+            }
+            else
+            {
+                string message = "Catched: System.NullReferenceException. You are trying to sell nothing.";
+                string caption = "Error";
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+            }
+        }
+
+        private void sellToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Lot selectedItem = (Lot)ItemList.SelectedItem;
+            if (selectedItem.date_expire < DateTime.Now)
+            {
+                sell(selectedItem);
+            }
+            else
+            {
+                string message = "You can not sell this item, expiration date has not yet passed.";
+                string caption = "Selling error";
+                var res = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+            }
+        }
     }
 }

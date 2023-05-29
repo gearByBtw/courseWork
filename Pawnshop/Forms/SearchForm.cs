@@ -34,8 +34,7 @@ namespace Pawnshop.Forms
         private void SearchForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            var MainForm = new MainForm();
-            MainForm.Show();
+            MainForm.link.Show();
         }
 
         private void search_button_Click(object sender, EventArgs e)
@@ -66,6 +65,28 @@ namespace Pawnshop.Forms
         {
             lastText = str;
             var res = MainForm.link.searchFor(str);
+            lotBindingSource.DataSource = res;
+            if(res.Count == 0)
+            {
+                string message = "No lots found.";
+                var result = MessageBox.Show(message, "", MessageBoxButtons.OK);
+            }
+        }
+
+        private void sellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lot selectedItem = (Lot)search_output.SelectedItem;
+            if (selectedItem.date_expire < DateTime.Now)
+            {
+                MainForm.link.sell(selectedItem);
+            }
+            else
+            {
+                string message = "You can not sell this item, expiration date has not yet passed.";
+                string caption = "Selling error";
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+            }
+            var res = MainForm.link.searchFor(lastText);
             lotBindingSource.DataSource = res;
         }
     }

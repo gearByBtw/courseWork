@@ -15,32 +15,18 @@ namespace Pawnshop
     {
         PawnshopList pawnshop;
 
-        public static MainForm link;
+        public static MainForm MainLink;
 
-        public static PawnshopList pawnshopMain;
+        public static PawnshopList lastList;
 
-        public static PawnshopList GetMain()
-        {
-            if (pawnshopMain == null)
-            {
-                pawnshopMain = new PawnshopList();
-            }
-            return pawnshopMain;
-        }
         public MainForm()
         {
             InitializeComponent();
-            link = this;
             this.FormClosing += MainForm_FormClosing;
-            pawnshop = GetMain();
+            pawnshop = new PawnshopList();
+            MainLink = this;
+            DataAccess.Load(pawnshop);
             mainFormBindingSource.DataSource = pawnshop.Lots;
-            bool state = DataAccess.stateLoad();
-            if(state)
-            {
-                DataAccess.Load(pawnshop);
-                mainFormBindingSource.ResetBindings(true);
-                DataAccess.stateSave(false);
-            }
         }
         public void AddNewLot(string item, string client, double price, double price_given, int expiration_period)
         {
@@ -48,7 +34,7 @@ namespace Pawnshop
             Lot newLot = new Lot(id, item, client, price, price_given, DateTime.Now, DateTime.Now.AddDays(expiration_period));
             pawnshop.Lots.Add(newLot);
             pawnshop.IsDirty = true;
-            mainFormBindingSource.ResetBindings(true);
+            update();
         }
         public void EditLot(int id, string item, string client, double price, double price_given, DateTime date, int expiration_period)
         {
@@ -64,7 +50,7 @@ namespace Pawnshop
                 toBeChanged.date_expire = date.AddDays(expiration_period);
 
                 pawnshop.IsDirty = true;
-                mainFormBindingSource.ResetBindings(true);
+                update();
             }
         }
         public List<Lot> searchFor(string searchValue)
@@ -73,26 +59,93 @@ namespace Pawnshop
 
             int searchInt;
             bool isInt = int.TryParse(searchValue, out searchInt);
+
             double searchDouble;
             bool isDouble = double.TryParse(searchValue, out searchDouble);
+
             DateTime searchDate;
             bool isDate = DateTime.TryParseExact(searchValue, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out searchDate);
+
             searchResults = pawnshop.Lots.Where(obj =>
-            (isInt && obj.id == searchInt) ||
-            obj.item == searchValue ||
-            obj.client == searchValue ||
-            (isDouble && (obj.price == searchDouble || obj.price_given == searchDouble)) ||
-            (isDate && (obj.date.ToShortDateString() == searchValue || obj.date_expire.ToShortDateString() == searchValue))
-            ).Distinct().ToList();
-            return searchResults;
+           (isInt && obj.id == searchInt) ||
+           obj.item == searchValue ||
+           obj.client == searchValue ||
+           (isDouble && (obj.price == searchDouble || obj.price_given == searchDouble)) ||
+           (isDate && (obj.date.ToShortDateString() == searchValue || obj.date_expire.ToShortDateString() == searchValue))
+           ).Distinct().ToList();
+
+            searchResults.AddRange(pawnshop.Lots.Where(obj =>
+            obj.item.Contains(searchValue) ||
+            obj.client.Contains(searchValue) 
+            ).Distinct().ToList());
+
+            HashSet<Lot> uniqueSet = new HashSet<Lot>(searchResults);
+            List<Lot> uniqueList = new List<Lot>(uniqueSet);
+            return uniqueList;
         }
 
-        private void testDataToolStripMenuItem_Click(object sender, EventArgs e)
+        public void delete(Lot selectedItem)
         {
-            int n = 10;
-            
-                for (int i = 1; i < n+1; i++)
+            if (selectedItem != null)
+            {
+                var result = MessageBox.Show("Are you sure you want to delete this element?", "Deleting confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
                 {
+                    pawnshop.Lots.Remove(selectedItem);
+                    pawnshop.IsDirty = true;
+                    update();
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show("Catched: System.NullReferenceException. You are trying to delete nothing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        public void sell(Lot selectedItem)
+        {
+            if (selectedItem != null)
+            {
+                var result = MessageBox.Show("Are you sure you want to sell this element?", "Selling confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    pawnshop.Lots.Remove(selectedItem);
+                    pawnshop.IsDirty = true;
+                    update();
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show("Catched: System.NullReferenceException. You are trying to sell nothing.", "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        public void update(bool IsSearchButton = false)
+        {
+            var str = search_input.Text;
+            if (str == "")
+            {
+                mainFormBindingSource.ResetBindings(true);
+                mainFormBindingSource.DataSource = pawnshop.Lots;
+            }
+            else
+            {
+                var res = searchFor(str);
+                mainFormBindingSource.DataSource = res;
+                if ((res.Count == 0) && (IsSearchButton))
+                {
+                    var result = MessageBox.Show("No lots found.", "", MessageBoxButtons.OK);
+                }
+            }
+        }
+        public void testData(int n)
+        {
+            pawnshop.IsDirty = true;
+            for (int i = 1; i < n + 1; i++)
+            {
                 if (i % 2 == 0)
                 {
                     var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(i), DateTime.Now.AddDays(i + 3));
@@ -101,18 +154,18 @@ namespace Pawnshop
                 }
                 else
                 {
-                    var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(-365+i), DateTime.Now.AddDays(-365 + i + 3));
+                    var newLot = new Lot(pawnshop.IdCounter, "item" + i, "client" + i, 10 + i, 15 + i, DateTime.Now.AddDays(-365 + i), DateTime.Now.AddDays(-365 + i + 3));
                     pawnshop.IdCounter++;
                     pawnshop.Lots.Add(newLot);
                 }
-                }
-            mainFormBindingSource.ResetBindings(true);
-            mainFormBindingSource.DataSource = pawnshop.Lots;
+            }
+            update();
         }
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            safeExit();
+                Application.Exit();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,21 +185,42 @@ namespace Pawnshop
             }
             else
             {
-                string message = "Catched: System.NullReferenceException. You are trying to edit nothing.";
-                string caption = "Error";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Question);
+                var result = MessageBox.Show("Catched: System.NullReferenceException. You are trying to edit nothing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            safeExit();
+            if (pawnshop.IsDirty)
+            {
+                var result = MessageBox.Show("Do you want to save the document before closing?", "Saving confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    pawnshop.IsDirty = false;
+                    DataAccess.Save(pawnshop);
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show("Do you want to close the program?", "Closing confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pawnshop.Lots.Clear();
             pawnshop.IdCounter = 1;
+            pawnshop.IsDirty = true;
             mainFormBindingSource.ResetBindings(true);
         }
 
@@ -193,62 +267,6 @@ namespace Pawnshop
             Lot selectedItem = (Lot)ItemList.SelectedItem;
             delete(selectedItem);
         }
-        public void delete(Lot selectedItem)
-        {
-            if (selectedItem != null)
-            {
-                string message = "Are you sure you want to delete this element?";
-                string caption = "Deleting confirmation";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    pawnshop.Lots.Remove(selectedItem);
-                    pawnshop.IsDirty = true;
-                    mainFormBindingSource.ResetBindings(true);
-                }
-            }
-            else
-            {
-                string message = "Catched: System.NullReferenceException. You are trying to delete nothing.";
-                string caption = "Error";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
-            }
-           
-        }
-        public void safeExit()
-        {
-            if (pawnshop.IsDirty)
-            {
-                string message = "Do you want to save the document?";
-                string caption = "Saving confirmation";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    DataAccess.Save(pawnshop);
-                }
-                else
-                {
-                    DataAccess.Load(pawnshop);
-                }
-                DataAccess.stateSave(true);
-                Environment.Exit(0);
-            }
-            else
-            {
-                DataAccess.stateSave(true);
-                Environment.Exit(0);
-            }
-        }
-
-        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var SearchForm = new SearchForm();
-            SearchForm.Show();
-        }
-
         private void sellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Lot selectedItem = (Lot)ItemList.SelectedItem;
@@ -258,32 +276,7 @@ namespace Pawnshop
             }
             else
             {
-                string message = "You can not sell this item, expiration date has not yet passed.";
-                string caption = "Selling error";
-                var res = MessageBox.Show(message, caption, MessageBoxButtons.OK);
-            }
-        }
-
-        public void sell(Lot selectedItem)
-        {
-            if (selectedItem != null)
-            {
-                string message = "Are you sure you want to sell this element?";
-                string caption = "Selling confirmation";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    pawnshop.Lots.Remove(selectedItem);
-                    pawnshop.IsDirty = true;
-                    mainFormBindingSource.ResetBindings(true);
-                }
-            }
-            else
-            {
-                string message = "Catched: System.NullReferenceException. You are trying to sell nothing.";
-                string caption = "Error";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+                var res = MessageBox.Show("You can not sell this item, expiration date has not yet passed.", "Selling error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -296,10 +289,42 @@ namespace Pawnshop
             }
             else
             {
-                string message = "You can not sell this item, expiration date has not yet passed.";
-                string caption = "Selling error";
-                var res = MessageBox.Show(message, caption, MessageBoxButtons.OK);
+                var res = MessageBox.Show("You can not sell this item, expiration date has not yet passed.", "Selling error", MessageBoxButtons.OK);
             }
+        }
+        private void search_input_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                update(true);
+                e.Handled = true;
+            }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            update(true);
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            testData(10);
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            testData(100);
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            testData(1000);
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            testData(10000);
         }
     }
 }

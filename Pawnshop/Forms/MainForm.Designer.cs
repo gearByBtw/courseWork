@@ -35,21 +35,26 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ediToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.sellToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.search_input = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -58,13 +63,15 @@
             // 
             // ItemList
             // 
+            this.ItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemList.DataSource = this.mainFormBindingSource;
-            this.ItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemList.FormattingEnabled = true;
             this.ItemList.ItemHeight = 23;
-            this.ItemList.Location = new System.Drawing.Point(3, 26);
+            this.ItemList.Location = new System.Drawing.Point(3, 75);
             this.ItemList.Name = "ItemList";
-            this.ItemList.Size = new System.Drawing.Size(776, 524);
+            this.ItemList.Size = new System.Drawing.Size(773, 464);
             this.ItemList.TabIndex = 1;
             this.ItemList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ItemList_MouseDown);
             // 
@@ -101,10 +108,42 @@
             // 
             // testDataToolStripMenuItem
             // 
+            this.testDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem1});
             this.testDataToolStripMenuItem.Name = "testDataToolStripMenuItem";
             this.testDataToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.testDataToolStripMenuItem.Text = "Test data";
-            this.testDataToolStripMenuItem.Click += new System.EventHandler(this.testDataToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 26);
+            this.toolStripMenuItem2.Text = "10";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(136, 26);
+            this.toolStripMenuItem3.Text = "100";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(136, 26);
+            this.toolStripMenuItem4.Text = "1 000";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 26);
+            this.toolStripMenuItem1.Text = "10 000";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // clearToolStripMenuItem
             // 
@@ -130,7 +169,6 @@
             this.lotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
             this.ediToolStripMenuItem,
-            this.searchToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.sellToolStripMenuItem});
             this.lotToolStripMenuItem.Name = "lotToolStripMenuItem";
@@ -150,13 +188,6 @@
             this.ediToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
             this.ediToolStripMenuItem.Text = "Edit";
             this.ediToolStripMenuItem.Click += new System.EventHandler(this.ediToolStripMenuItem_Click);
-            // 
-            // searchToolStripMenuItem
-            // 
-            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
-            this.searchToolStripMenuItem.Text = "Search";
-            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -193,39 +224,65 @@
             this.deleteToolStripMenuItem1,
             this.sellToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 76);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(122, 24);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.ItemList);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.MinimumSize = new System.Drawing.Size(782, 525);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(782, 553);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
             // 
             // sellToolStripMenuItem1
             // 
             this.sellToolStripMenuItem1.Name = "sellToolStripMenuItem1";
-            this.sellToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.sellToolStripMenuItem1.Size = new System.Drawing.Size(122, 24);
             this.sellToolStripMenuItem1.Text = "Sell";
             this.sellToolStripMenuItem1.Click += new System.EventHandler(this.sellToolStripMenuItem1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.searchButton);
+            this.groupBox1.Controls.Add(this.search_input);
+            this.groupBox1.Controls.Add(this.ItemList);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.MinimumSize = new System.Drawing.Size(800, 600);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(800, 600);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchButton.Location = new System.Drawing.Point(668, 28);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(108, 40);
+            this.searchButton.TabIndex = 1;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // search_input
+            // 
+            this.search_input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.search_input.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.search_input.Location = new System.Drawing.Point(12, 28);
+            this.search_input.Name = "search_input";
+            this.search_input.Size = new System.Drawing.Size(650, 41);
+            this.search_input.TabIndex = 0;
+            this.search_input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_input_KeyDown);
             // 
             // MainForm
             // 
@@ -245,6 +302,7 @@
             this.menuStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,7 +320,6 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem lotToolStripMenuItem;
         private ToolStripMenuItem addToolStripMenuItem;
-        private ToolStripMenuItem searchToolStripMenuItem;
         private ToolStripMenuItem ediToolStripMenuItem;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem deleteToolStripMenuItem;
@@ -272,5 +329,11 @@
         private GroupBox groupBox1;
         private ToolStripMenuItem sellToolStripMenuItem;
         private ToolStripMenuItem sellToolStripMenuItem1;
+        private Button searchButton;
+        private TextBox search_input;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem toolStripMenuItem4;
+        private ToolStripMenuItem toolStripMenuItem1;
     }
 }

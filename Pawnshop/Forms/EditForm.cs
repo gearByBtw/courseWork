@@ -19,14 +19,9 @@ namespace Pawnshop.Forms
 {
     public partial class EditForm : Form
     {
-        public int from;
         public EditForm()
         {
             InitializeComponent();
-            if (from != 1)
-            {
-                from = 0;
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -80,13 +75,11 @@ namespace Pawnshop.Forms
                 }
 
             int id = int.Parse(id_box.Text);
-            string message = "Are you sure you want to edit this element?";
-            string caption = "Editting confirmation";
-            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Are you sure you want to edit this element?", "Editting confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                MainForm.link.EditLot(id, item, client, price, price_given, date, expiration_period);
+                MainForm.MainLink.EditLot(id, item, client, price, price_given, date, expiration_period);
                 this.Hide();
             }
         }

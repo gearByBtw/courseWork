@@ -10,7 +10,7 @@ namespace Pawnshop.Data
 {
     internal static class DataAccess
     {
-        const string DATA_PATH = "Data\\Pawnshop.json";
+        const string DATA_PATH = "Pawnshop.json";
 
         public static void Save(PawnshopList pawnshop)
         {
